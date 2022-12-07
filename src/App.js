@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from './Landing/Landing';
+import New from './New/New';
 
 export const DataContext = React.createContext({});
 
@@ -39,7 +41,12 @@ const App = () => {
 
   return (
     <DataContext.Provider value={{list, greatestPlayers}}>
-      <Landing />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='/new' element={<New />} />
+        </Routes>
+      </BrowserRouter>
     </DataContext.Provider>
   );
 }
