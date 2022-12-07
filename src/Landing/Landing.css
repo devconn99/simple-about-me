@@ -1,0 +1,32 @@
+body {
+    background-color: white;
+    color: Black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+  }
+  
+  p {
+      text-align: center;
+      color: rgb(2, 69, 18);
+  }
+  h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: 1%;
+  }
+  li {
+    color: rgb(2, 69, 18);
+  }
+  h5 {
+    font-family: cursive;
+    text-align: center;
+    margin-bottom: 1%;
+  }
+  form {
+    text-align: center;
+  }
+  img 
+  {
+    width: 250px;
+    height: 350px;
+  }
