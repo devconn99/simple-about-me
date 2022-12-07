@@ -1,15 +1,51 @@
+import React, { useState, useEffect } from 'react';
 import "./Landing.css";
 
+const initialList = [
+  {
+    property: 'Institution: ',
+    value: 'University',
+  },
+];
+
+const restFirstList = [
+  {
+    property: 'Major: ',
+    value: 'Data Science',
+  },
+  {
+    property: 'College: ',
+    value: 'Letters and Sciences',
+  },
+]
+
+const secondList = ['Roger Federer'];
+
+const restSecondList = ['Novak Djokovic', 'Rafael Nadal', 'Serena Williams']
+
 const Landing = () => {
+  const [list, setList] = useState(initialList);
+  const [greatestPlayers, setGreatestPlayers] = useState(secondList)
+
+  useEffect(() => {
+    if (secondList.length > 0) {
+      setList([...list, ...restFirstList]);
+      setGreatestPlayers([...greatestPlayers, ...restSecondList])
+    }
+  // eslint-disable-next-line
+  }, [])
+
   return (
     <>
       <h1>John Doe</h1>
       <div>
         <h3>Education</h3>
         <ul>
-            <li><span style={{color: "black", fontWeight: "bold"}}>Institution: </span>University</li>
-            <li><span style={{color: "black", fontWeight: "bold"}}>Major: </span>Data Science </li>
-            <li><span style={{color: "black", fontWeight: "bold"}}>College: </span>Letters and Sciences</li>
+          {list.map(({property, value}, index) => (
+            <li key={`${property} - ${index}`}>
+              <span style={{color: "black", fontWeight: "bold"}}>{property} </span>{value}
+            </li>
+          ))}
         </ul>
       </div>
       <h4>About Me</h4>
@@ -21,14 +57,12 @@ const Landing = () => {
         <label for="ftrivia">Why did the chicken cross the road?</label><br />
         <input type="text" answer="answer" /><br />
         <label for="ftrivia">Who is the greatest tennis player of all time?</label><br />
-        <input type="radio" id="Roger Federer" name="Roger Federer" value="Roger Federer" />
-        <label for="ftrivia">Roger Federer</label><br />
-        <input type="radio" id="Novak Djokovic" name="Novak Djokovic" value="Novak Djokovic" />
-        <label for="ftrivia">Novak Djokovic</label><br />
-        <input type="radio" id="Rafael Nadal" name="Rafael Nadal" value="Rafael Nadal" />
-        <label for="ftrivia">Rafael Nadal</label><br />
-        <input type="radio" id="Serena Williams" name="Serena Williams" value="Serena Williams" />
-        <label for="ftrivia">Serena Williams</label><br />
+        {greatestPlayers.map((player, index) => (
+          <React.Fragment key={`${player}-${index}`}>
+            <input type="radio" id={player} name={player} value={player} />
+            <label for="ftrivia">{player}</label><br />
+          </React.Fragment>
+        ))}
       </form>
     </>
   );
